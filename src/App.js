@@ -8,7 +8,7 @@ class App extends Component {
     this.state = {
       // 'phrase' is the text entered by the user - right now there are some test words hard coded to make the process of testing your code a bit faster and easier
       // ACTION ITEM: when you are ready for your full user experience, delete the test words so phrase is assigned an empty string
-      phrase: 'every through yummy squeal queen fry',
+      phrase: '',
       // 'phraseTranslated' is what the user will see appear on the page as Pig Latin, it starts as the preset message and updates when your user clicks the 'submit' button
       phraseTranslated: 'This is where your translated sentence will appear.'
     }
@@ -38,29 +38,29 @@ class App extends Component {
       var slicedArr = []
       var vowelArr = []
       var pigLatin = ""
-      if () {
+      var cueYouArr = ["q", "u"]
 
-      }
-      else if (arrLetters[0] === "a" || arrLetters[0] === "e" || arrLetters[0] === "i" || arrLetters[0] === "o" || arrLetters[0] === "u") {
+
+      if (arrLetters[0] === "a" || arrLetters[0] === "e" || arrLetters[0] === "i" || arrLetters[0] === "o" || arrLetters[0] === "u") {
         pigLatin = currentWord + "way"
-      } else {
+      }
+      else {
         arrLetters.map((letters, index) => {
           if (arrLetters[index] === "a" || arrLetters[index] === "e" || arrLetters[index] === "i" || arrLetters[index] === "o" || arrLetters[index] === "u") {
             vowelArr.push(arrLetters[index])
           }
           let slicedIndex = currentWord.indexOf(vowelArr[0])
-          slicedArr = arrLetters.slice(slicedIndex).join("")
-          let consonants = arrLetters.slice(0, slicedIndex).join("")
-          pigLatin = slicedArr + consonants + "ay"
+          slicedArr = arrLetters.slice(slicedIndex)
+          let consonants = arrLetters.slice(0, slicedIndex)
+          let finalString = slicedArr.join("")
+          let consString = consonants.join("")
+          pigLatin = finalString + consString + "ay"
+
+          if (consonants.includes("q") === true && vowelArr[0] === "u"){
+            pigLatin = finalString.slice(1) + consString + vowelArr[0] + "ay"
+          }
         })
       }
-
-
-      //console.log(slicedIndex)
-      // console.log("slicedArr", slicedArr);
-      // console.log("consonants", consonants);
-      // console.log("final vowel index", slicedIndex);
-
       // Remember: console.log is your friend :)
 
       // ACTION ITEM: change the value of currentWord in the push method to the name of whatever variable you made containing your Pig Latin'd word
@@ -97,7 +97,7 @@ class App extends Component {
     // this method restarts the game by setting the original state
     // ACTION ITEM: when you are ready for your full user experience, delete the test words in phrase so that is assigned an empty string
     this.setState({
-      phrase: 'through every squeal queen fry',
+      phrase: '',
       phraseTranslated: 'This is where your translated sentence will appear.'
     })
   }
@@ -110,7 +110,7 @@ class App extends Component {
         <h1>Pig Latin Translator</h1>
         <div id="pigImage">
           <img
-            src="https://lh3.googleusercontent.com/QvvsRY5ShwDNEouVMK8_z7QCwS3grkgd4mzZOlom23Hurralk54ObvsyEMM8ZSNR5pEFBeBMzltzEEcgi2llYJnhXTuXClN3njmMjtw3vgn8Go5jr40fHMNzfI64eYRrnHbZUutxCA=w2400"
+            src="/pepa pig logo.png"
             alt="pig with butcher cut names in pig latin"
             id="butcherPig"
           />
@@ -124,17 +124,18 @@ class App extends Component {
               id="inputPhrase"
               onChange={this.handleChange}
               value={this.state.phrase}
+              placeholder="ytray emay outway!"
             />
             <br />
             {/* button that called the setUpPreventDefault method */}
             <button onClick={this.setUpPreventDefault}>Submit</button>
             {/* button that resets the game */}
-            <button onClick={this.restartGame}>Clear</button>
+            <button id="clear" onClick={this.restartGame}>Clear</button>
           </div>
           {/* where the translated phrase will display */}
           <p>{this.state.phraseTranslated}</p>
         </div>
-        <footer>Coded by ~your name here~</footer>
+        <footer>Coded by ~Drew, Ryan & David~</footer>
       </React.Fragment >
     )
   }

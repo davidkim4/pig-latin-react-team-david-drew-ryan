@@ -1,18 +1,39 @@
 body{
   margin: 2em;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family:'Architects Daughter', cursive;
   align-items: center;
   text-align: center;
+  background-color: #98C1D9;
 }
 h1{
   text-align: center;
   font-size: 4em;
+  color: white;
+  text-shadow: 5px 5px 5px black;
 }
 button{
   margin: 1em;
   border-radius: .25em;
   font-size: 75%;
   padding: 1em;
+  transition-duration: 0.7s;
+  font-family: 'Architects Daughter', cursive;
+}
+button:hover{
+  background-color: #81B29A;
+  color: white;
+}
+#clear{
+  margin: 1em;
+  border-radius: .25em;
+  font-size: 75%;
+  padding: 1em;
+  transition-duration: 0.7s;
+  font-family: 'Architects Daughter', cursive;
+}
+#clear:hover{
+  background-color: #F07167;
+  color: white;
 }
 footer{
   padding: 2em;
@@ -29,16 +50,17 @@ footer{
   height: 5em;
   width: 20em;
   text-align: center;
+  font-family: 'Architects Daughter', cursive;
 }
 
 .box{
-  background-color: #606060;
+  background-color: #3D405B;
   color: #fff;
   border-radius: .2em;
   padding: 1em;
   font-size: 150%;
 }
 .header{
-  background-color: #FFF;
+  background-color: #E6E6FA;
   padding: 1em;
 }
