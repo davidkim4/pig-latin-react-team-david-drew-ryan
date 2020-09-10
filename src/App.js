@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     // the state object holds information that can be displayed to the user and updated throughout the program
     this.state = {
@@ -27,20 +27,47 @@ class App extends Component {
 
     // taking the user input and spliting the text into an array of words
     let splitUserInput = userInput.toLowerCase().split(" ")
-
+    //console.log(splitUserInput);
     // now that we have an array of words, we can map over the array and access each word
+
     splitUserInput.map(currentWord => {
       // ACTION ITEM: use 'currentWord' as a starting point for your code
-
-
       // your code here!
+      let arrLetters = currentWord.split("")
+      //console.log(arrLetters);
+      var slicedArr = []
+      var vowelArr = []
+      var pigLatin = ""
+      if () {
+
+      }
+      else if (arrLetters[0] === "a" || arrLetters[0] === "e" || arrLetters[0] === "i" || arrLetters[0] === "o" || arrLetters[0] === "u") {
+        pigLatin = currentWord + "way"
+      } else {
+        arrLetters.map((letters, index) => {
+          if (arrLetters[index] === "a" || arrLetters[index] === "e" || arrLetters[index] === "i" || arrLetters[index] === "o" || arrLetters[index] === "u") {
+            vowelArr.push(arrLetters[index])
+          }
+          let slicedIndex = currentWord.indexOf(vowelArr[0])
+          slicedArr = arrLetters.slice(slicedIndex).join("")
+          let consonants = arrLetters.slice(0, slicedIndex).join("")
+          pigLatin = slicedArr + consonants + "ay"
+        })
+      }
+
+
+      //console.log(slicedIndex)
+      // console.log("slicedArr", slicedArr);
+      // console.log("consonants", consonants);
+      // console.log("final vowel index", slicedIndex);
 
       // Remember: console.log is your friend :)
 
-
       // ACTION ITEM: change the value of currentWord in the push method to the name of whatever variable you made containing your Pig Latin'd word
-      return translatedWordsArray.push(currentWord)
+      return translatedWordsArray.push(pigLatin)
     })
+
+
 
 
     // joining the array back to a string of translated words
@@ -79,36 +106,36 @@ class App extends Component {
     // the render method is where we put information on the page
     // inside the return is all our JSX tags
     return (
-      <React.Fragment>
+      <React.Fragment >
         <h1>Pig Latin Translator</h1>
-          <div id="pigImage">
-            <img
-              src="https://lh3.googleusercontent.com/QvvsRY5ShwDNEouVMK8_z7QCwS3grkgd4mzZOlom23Hurralk54ObvsyEMM8ZSNR5pEFBeBMzltzEEcgi2llYJnhXTuXClN3njmMjtw3vgn8Go5jr40fHMNzfI64eYRrnHbZUutxCA=w2400"
-              alt="pig with butcher cut names in pig latin"
-              id="butcherPig"
-            />
-          </div>
-          <div className="box">
-            <h4>Enter phrase to be translated:</h4>
-            <div className="info">
+        <div id="pigImage">
+          <img
+            src="https://lh3.googleusercontent.com/QvvsRY5ShwDNEouVMK8_z7QCwS3grkgd4mzZOlom23Hurralk54ObvsyEMM8ZSNR5pEFBeBMzltzEEcgi2llYJnhXTuXClN3njmMjtw3vgn8Go5jr40fHMNzfI64eYRrnHbZUutxCA=w2400"
+            alt="pig with butcher cut names in pig latin"
+            id="butcherPig"
+          />
+        </div>
+        <div className="box">
+          <h4>Enter phrase to be translated:</h4>
+          <div className="info">
             {/* user input field - every DOM event that happens in the input will call the handleChange method and update state */}
-              <input
-                type="text"
-                id="inputPhrase"
-                onChange={ this.handleChange }
-                value={ this.state.phrase }
-              />
-              <br />
-              {/* button that called the setUpPreventDefault method */}
-              <button onClick={ this.setUpPreventDefault }>Submit</button>
-              {/* button that resets the game */}
-              <button onClick={ this.restartGame }>Clear</button>
-            </div>
-            {/* where the translated phrase will display */}
-            <p>{ this.state.phraseTranslated }</p>
+            <input
+              type="text"
+              id="inputPhrase"
+              onChange={this.handleChange}
+              value={this.state.phrase}
+            />
+            <br />
+            {/* button that called the setUpPreventDefault method */}
+            <button onClick={this.setUpPreventDefault}>Submit</button>
+            {/* button that resets the game */}
+            <button onClick={this.restartGame}>Clear</button>
           </div>
+          {/* where the translated phrase will display */}
+          <p>{this.state.phraseTranslated}</p>
+        </div>
         <footer>Coded by ~your name here~</footer>
-      </React.Fragment>
+      </React.Fragment >
     )
   }
 }
