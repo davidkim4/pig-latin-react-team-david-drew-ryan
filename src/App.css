@@ -53,6 +53,10 @@ footer{
   font-family: 'Architects Daughter', cursive;
 }
 
+#answer{
+  font-size: 30px;
+}
+
 .box{
   background-color: #3D405B;
   color: #fff;

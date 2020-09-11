@@ -33,29 +33,37 @@ class App extends Component {
     splitUserInput.map(currentWord => {
       // ACTION ITEM: use 'currentWord' as a starting point for your code
       // your code here!
+      
+      // Split all words into arrays of letters
       let arrLetters = currentWord.split("")
-      //console.log(arrLetters);
+  
+      // Initialize empty variables
       var slicedArr = []
       var vowelArr = []
       var pigLatin = ""
-      var cueYouArr = ["q", "u"]
-
-
+      
+      // If first letter is a vowel (excluding "y"), add "way" to the end.
       if (arrLetters[0] === "a" || arrLetters[0] === "e" || arrLetters[0] === "i" || arrLetters[0] === "o" || arrLetters[0] === "u") {
         pigLatin = currentWord + "way"
-      }
-      else {
+      } else {
+        //Else, push index of all vowels in word to vowelArr
         arrLetters.map((letters, index) => {
-          if (arrLetters[index] === "a" || arrLetters[index] === "e" || arrLetters[index] === "i" || arrLetters[index] === "o" || arrLetters[index] === "u") {
+          if (arrLetters[index] === "a" || arrLetters[index] === "e" || arrLetters[index] === "i" || arrLetters[index] === "o" || arrLetters[index] === "u" || arrLetters[index] === "y") {
             vowelArr.push(arrLetters[index])
           }
-          let slicedIndex = currentWord.indexOf(vowelArr[0])
-          slicedArr = arrLetters.slice(slicedIndex)
-          let consonants = arrLetters.slice(0, slicedIndex)
+
+          // firstVowelIndex is equal to the first value in the vowelArray
+          let firstVowelIndex = currentWord.indexOf(vowelArr[0])
+          // slicedArr is equal to the first vowel plus the rest of the word
+          slicedArr = arrLetters.slice(firstVowelIndex)
+          // consonants is equal to everything before the first vowel in the word
+          let consonants = arrLetters.slice(0, firstVowelIndex)
+          // Turn the two arrays back into strings
           let finalString = slicedArr.join("")
           let consString = consonants.join("")
+          // Add our vowel string + our consonant string + "ay" 
           pigLatin = finalString + consString + "ay"
-
+          //Special Case: if consonant array includes "q" and the first vowel is "u", remove "u" from vowel string and add to consonant string
           if (consonants.includes("q") === true && vowelArr[0] === "u"){
             pigLatin = finalString.slice(1) + consString + vowelArr[0] + "ay"
           }
@@ -133,9 +141,9 @@ class App extends Component {
             <button id="clear" onClick={this.restartGame}>Clear</button>
           </div>
           {/* where the translated phrase will display */}
-          <p>{this.state.phraseTranslated}</p>
+          <p id="answer">{this.state.phraseTranslated}</p>
         </div>
-        <footer>Coded by ~Drew, Ryan & David~</footer>
+        <footer>Coded by ~David, Drew & Ryan~</footer>
       </React.Fragment >
     )
   }
